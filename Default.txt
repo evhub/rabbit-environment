@@ -1,0 +1,194 @@
+#--------------------------------------------------------------------------------------------------
+# DEFAULT VARIABLES:
+#--------------------------------------------------------------------------------------------------
+
+'x := 0
+'y := 0
+
+raise = 1/0
+accuracy = 10^-8
+
+nil = none
+a := 0
+
+phi = (5^.5+1)/2
+deca = 10^10
+goog = deca^10
+
+#--------------------------------------------------------------------------------------------------
+# ALIASES:
+#--------------------------------------------------------------------------------------------------
+
+t = x
+n = x
+k = y
+theta = x
+f(x) = x
+
+deriv = D
+integ = S
+defint = S
+
+d = D
+dx = 1
+df = d:f
+dy = df
+
+#--------------------------------------------------------------------------------------------------
+# IMPORTED FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+lib = import Default
+input = lib:1
+funcsum(x) = lib:2:x
+chansum(x,y) = lib:2:x:y
+store(x,y) = lib:3:x:y
+retreive(x) = lib:3:x
+loglen(x) = lib:4:x
+combine(x,y) = lib:5:x:y
+extractx(x) = lib:6:x
+extracty(x) = lib:7:x
+bitor(x,y) = lib:9:x:y
+bitand(x,y) = lib:10:x:y
+bitxor(x,y) = lib:8:x:y
+bitnot(x) = lib:11:x
+fib(x) = lib:12:x
+
+#--------------------------------------------------------------------------------------------------
+# BOOLEAN FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+bool(x) = \true @ x; \false
+not(x) = \false @ x; \true
+and(x,y) = \true @ x&y; \false
+nand(x,y) = \false @ x&y; \true
+or(x,y) = \true @ x|y; \false
+nor(x,y) = \false @ x|y; \true
+xor(x,y) = \true @ bool:x != bool:y; \false
+xnor(x,y) = \false @ bool:x != bool:y; \true
+right(x) = floor:(x/2)
+left(x) = floor:(x*2)
+
+#--------------------------------------------------------------------------------------------------
+# BASIC FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+solve(x,y) = x @ x=y
+
+mod(x,y) = (xy+-1*floor:(xy))*y $ xy = x/y
+
+add(x,y) = x+y
+sub(x,y) = x-y
+mul(x,y) = x*y
+div(x,y) = x/y
+pow(x,y) = x^y
+
+#--------------------------------------------------------------------------------------------------
+# TRIGONOMETRIC FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+sec(x) = 1/cos:x
+csc(x) = 1/sin:x
+cot(x) = 1/tan:x
+asec(x) = acos:(1/x)
+acsc(x) = asin:(1/x)
+acot(x) = atan:(1/x)
+cis(x) = cos(x)+i*sin(x)
+
+dsin := \(x,n,n:1)\
+ (
+ sin(x) @ n%4 < 1;
+ cos(x) @ n%4 < 2;
+ -sin(x) @ n%4 < 3;
+ -cos(x) @ n%4 < 4
+ )
+
+dcos := \(x,n,n:1)\(dsin(x,(n+1)))
+
+dot(x,y) = sum(x*y)
+
+#--------------------------------------------------------------------------------------------------
+# FUNCTION PROCESSORS:
+#--------------------------------------------------------------------------------------------------
+
+break(f, x) = ff+mod:x:1*(f:(floor:x+1)+-1*ff) $ ff = f:(floor:x)
+iters(f, x) =
+ 1 @ x<1;
+ iters:\f:(x-1) @ f:x
+
+limproc(x) =
+ inf @ x>=deca;
+ -inf @ x<=-deca;
+ round:x:10
+lim(f, x) = limproc((f:(x+-accuracy)+f:(x+accuracy))/2)
+liminf(f) = limproc(f:goog)
+limneginf(f) = limproc(f:(-goog))
+
+slope(f, a,b) = (f:b+-f:a)/(b+-a)
+sderiv(f, x) = slope:\f:(x+-accuracy):(x+accuracy)
+lderiv(f, x) = slope:\f:(x+-accuracy):x
+rderiv(f, x) = slope:\f:x:(x+accuracy)
+deriv(f, x) = sderiv:\f:x @ f:x != none
+
+taylor(f, a, x) = f:a + (x-a)*(D:\f):a + (x-a)^2*(D:\f:2):a/2 + (x-a)^3*(D:\f:3):a/6
+
+f'(x) = (D:\f):x
+f''(x) = (D:\f:2):x
+f'n(n, x) = (D:\f:n):x
+
+#--------------------------------------------------------------------------------------------------
+# MATHEMATICAL FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+exp(n,x) = sum(n~range(0,n)~x^n/n!)
+
+lg(x) = ln(x)/ln(2)
+logb(y,x) = ln(x)/ln(y)
+
+fact(x) = x!
+int_fact(x) = break:\fact:x
+gamma_fact(n) = gamma:(n+1)
+quad_fact(n) = (2*n)!/n!
+dub_fact(n) = prod(range(1,(n+1))~\x\(2*x+-1))
+sup_fact(n) = prod(range(1,(n+1))~\x\(x!))
+hyp_fact(n) = prod(range(1,(n+1))~\x\(x^x))
+
+ack(m,n) =
+ n+1 @ m<=0;
+ ack:(m+-1):1 @ n<=0;
+ ack:(m+-1):(ack:m:(n+-1))
+
+#--------------------------------------------------------------------------------------------------
+# GRAPHING FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+seceq(f, a,b) = slope:\f:a:b+"*(x-"+a+")+"+f:a
+secline(f, a,b) = :(seceq:\f:a:b)
+taneq(f, x) = deriv:\f:x+"*(x-"+a+")+"+f:a
+tanline(f, x) = :(taneq:\f:x)
+
+window_string =
+ "Vertical Shift: " + yup +
+ "\nVertical Stretch: " + ystretch +
+ "\nHorizontal Shift: " + xup +
+ "\nHorizontal Stretch: " + xstretch
+window = print(window_string)
+
+dimensions_string =
+ "Domain: " + (xmin,xmax) +
+ "\nRange: " + (ymin,ymax)
+dimensions = print(dimensions_string)
+
+zoom = 2
+zoomin(zoom) = :("stretch:=stretch/"+zoom):"render"
+zoomout(zoom) = :("stretch:=stretch*"+zoom):"render"
+
+xmin = -xup
+xmax = width*xstretch+xmin
+ymin = -yup
+ymax = height*ystretch+ymin
+
+set_xmin(x) = :"xup:=-x"
+set_xmax(x) = :"xstretch:=(x+xup)/width"
+set_ymin(y) = :"yup:=-y"
+set_ymax(y) = :"ystretch:=(y+yup)/height"
