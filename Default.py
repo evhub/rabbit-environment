@@ -1,7 +1,10 @@
+from __future__ import absolute_import, print_function
+
 from rabbit.all import *
 
 class interfacer(object):
-    def __init__(self):
+    def __init__(self, proc):
+        self.proc = proc
         self.sums = {}
         self.vars = {}
         self.fib = {}
@@ -9,29 +12,35 @@ class interfacer(object):
         if params == None:
             return matrix(0)
         else:
-            self.v = useparams(params, ["var", "x", "y"])
+            self.v, self.proc.e.overflow = useparams(params, ["var", "x", "y"])
             self.start()
-            return float(self.find())
+            out = self.find()
+            if not out:
+                return matrix(0)
+            else:
+                return out
     def start(self):
         if not self.v["var"]:
             self.v["var"] = 0
         else:
             self.v["var"] = int(self.v["var"])
-        self.v["x"] = float(self.v["x"])
+        if self.v["x"]:
+            self.v["x"] = float(self.v["x"])
         if self.v["y"]:
             self.v["y"] = float(self.v["y"])
     def find(self):
         if self.v["var"] == 0:
             return self.v["x"]*self.v["y"]
         elif self.v["var"] == 1:
-            print "Running 'Input'."
-            return getnum(raw_input())
+            print("INPUT:")
+            return strcalc(raw_input(), self.proc.e)
         elif self.v["var"] == 2:
             if not self.v["y"]:
                 self.v["y"] = 0
             if self.v["x"] == 0:
                 self.sums[self.v["y"]] = 0.0
-                print "Running 'Sum' On 'y' Channel:", self.v["y"]
+                if self.proc.debug:
+                    print("Running Sum On y-Channel:", self.v["y"])
             if self.v["x"] >= 0:
                 self.sums[self.v["y"]] += self.v["x"]
                 return self.sums[self.v["y"]]

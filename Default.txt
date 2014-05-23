@@ -38,7 +38,7 @@ dy = df
 #--------------------------------------------------------------------------------------------------
 
 lib = import Default
-input = lib:1
+input() = lib:1
 funcsum(x) = lib:2:x
 chansum(x,y) = lib:2:x:y
 store(x,y) = lib:3:x:y
