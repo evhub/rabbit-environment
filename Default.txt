@@ -86,12 +86,12 @@ pow(x,y) = x^y
 # TRIGONOMETRIC FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-sec(x) = 1/cos:x
-csc(x) = 1/sin:x
-cot(x) = 1/tan:x
-asec(x) = acos:(1/x)
-acsc(x) = asin:(1/x)
-acot(x) = atan:(1/x)
+sec(x) = 1/cos(x)
+csc(x) = 1/sin(x)
+cot(x) = 1/tan(x)
+asec(x) = acos(1/x)
+acsc(x) = asin(1/x)
+acot(x) = atan(1/x)
 cis(x) = cos(x)+i*sin(x)
 
 dsin := \(x,n,n:1)\
@@ -156,6 +156,73 @@ ack(m,n) =
  n+1 @ m<=0;
  ack:(m+-1):1 @ n<=0;
  ack:(m+-1):(ack:m:(n+-1))
+ 
+#--------------------------------------------------------------------------------------------------
+# HASKELL FUNCTIONS:
+#--------------------------------------------------------------------------------------------------
+
+head(l) =
+ a $ a,as = l
+
+tail(l) =
+ as $ a,as = l
+
+parts(l) =
+ a,as
+ $ a,as = l
+
+length(l) =
+ 1 + length:as @ as;
+ 1 @ a;
+ 0
+ $ a,as = l
+
+max(l) =
+ (
+  x @ x > maxtail;
+  maxtail
+  $ maxtail = max:as
+  ) @ as;
+ a
+ $ a,as = l
+
+replicate(n,x) =
+ x, .. replicate:(n-1):x
+ @ n>0
+
+take(n,l) =
+ (
+  a, .. take:(n-1):l
+  $ a,as = l
+  )
+ @ l & n>0
+
+reverse(l) =
+ (
+  reverse:l .. a,
+  $ a,as = l
+  )
+ @ l
+
+zip(la, lb) =
+ (
+  (a,b), .. zip:as:bs
+  $ a,as = la
+  $ b,bs = lb
+  )
+ @ a & b
+
+elem(x, l) =
+ (
+  \true @ x ?= a;
+  elem:x:as
+  $ a,as = l
+  ) @ l;
+ \false
+
+qsort(l) =
+ l~\x\(x@x<=a) .. a, .. l~\x\(x@x>a)
+ $ a,as = l
 
 #--------------------------------------------------------------------------------------------------
 # GRAPHING FUNCTIONS:
