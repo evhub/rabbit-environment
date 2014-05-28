@@ -139,17 +139,16 @@ f'n(n, x) = (D:\f:n):x
 # MATHEMATICAL FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-exp(n,x) = sum(n~range(0,n)~x^n/n!)
+exp(n,x) = sum(n~range(0,n)~x^n/fact:n)
 
 lg(x) = ln(x)/ln(2)
 logb(y,x) = ln(x)/ln(y)
 
-fact(x) = x!
 int_fact(x) = break:\fact:x
 gamma_fact(n) = gamma:(n+1)
-quad_fact(n) = (2*n)!/n!
+quad_fact(n) = fact:(2*n)/fact:n
 dub_fact(n) = prod(range(1,(n+1))~\x\(2*x+-1))
-sup_fact(n) = prod(range(1,(n+1))~\x\(x!))
+sup_fact(n) = prod(range(1,(n+1))~\x\(fact:x))
 hyp_fact(n) = prod(range(1,(n+1))~\x\(x^x))
 
 ack(m,n) =
