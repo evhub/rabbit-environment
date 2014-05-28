@@ -179,7 +179,7 @@ length(l) =
 
 max(l) =
  (
-  x @ x > maxtail;
+  a @ a > maxtail;
   maxtail
   $ maxtail = max:as
   ) @ as;
@@ -192,14 +192,14 @@ replicate(n,x) =
 
 take(n,l) =
  (
-  a, .. take:(n-1):l
+  a, .. take:(n-1):as
   $ a,as = l
   )
  @ l & n>0
 
 reverse(l) =
  (
-  reverse:l .. a,
+  reverse:as .. a,
   $ a,as = l
   )
  @ l
@@ -210,7 +210,7 @@ zip(la, lb) =
   $ a,as = la
   $ b,bs = lb
   )
- @ a & b
+ @ la & lb
 
 elem(x, l) =
  (
@@ -221,8 +221,11 @@ elem(x, l) =
  \false
 
 qsort(l) =
- l~\x\(x@x<=a) .. a, .. l~\x\(x@x>a)
- $ a,as = l
+ (
+  qsort:(as~\x\(x@x<=a)) .. a, .. qsort:(as~\x\(x@x>a))
+  $ a,as = l
+  )
+ @ l
 
 #--------------------------------------------------------------------------------------------------
 # GRAPHING FUNCTIONS:
