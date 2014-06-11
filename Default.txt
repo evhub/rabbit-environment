@@ -221,7 +221,7 @@ elem(x, l) =
 
 qsort(l) =
  (
-  qsort:(as~\x\(x@x<=a)) .. a, .. qsort:(as~\x\(x@x>a))
+  qsort:(as~\x\(x@x<=a)) .. a .. qsort:(as~\x\(x@x>a))
   $ a,as = l
   )
  @ l
