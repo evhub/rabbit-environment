@@ -34,7 +34,7 @@ dy = df
 # IMPORTED FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-lib = import Default
+make lib = import Default
 input() = lib:1
 funcsum(x) = lib:2:x
 chansum(x,y) = lib:2:x:y
@@ -124,7 +124,7 @@ slope(f, a,b) = (f:b+-f:a)/(b+-a)
 sderiv(f, x) = slope:\f:(x+-accuracy):(x+accuracy)
 lderiv(f, x) = slope:\f:(x+-accuracy):x
 rderiv(f, x) = slope:\f:x:(x+accuracy)
-deriv(f, x) = sderiv:\f:x @ f:x != none
+pderiv(f, x) = sderiv:\f:x @ f:x != none
 
 taylor(f, a, x) = f:a + (x-a)*(D:\f):a + (x-a)^2*(D:\f:2):a/2 + (x-a)^3*(D:\f:3):a/6
 
