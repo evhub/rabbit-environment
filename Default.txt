@@ -93,10 +93,11 @@ cis(x) = cos(x)+i*sin(x)
 
 dsin := \(x,n,n:1)\
  (
- sin(x) @ n%4 < 1;
- cos(x) @ n%4 < 2;
- -sin(x) @ n%4 < 3;
- -cos(x) @ n%4 < 4
+ sin(x) @ modn < 1;
+ cos(x) @ modn < 2;
+ -sin(x) @ modn < 3;
+ -cos(x) @ modn < 4
+ $ modn = n % 4
  )
 
 dcos := \(x,n,n:1)\(dsin(x,(n+1)))
@@ -206,7 +207,7 @@ zip(la, lb) =
   $ a,as = la
   $ b,bs = lb
   )
- @ la & lb
+ @ len:la & len:lb
 
 elem(x, l) =
  (
@@ -221,7 +222,7 @@ qsort(l) =
   qsort:(as~\x\(x@x<=a)) .. a .. qsort:(as~\x\(x@x>a))
   $ a,as = l
   )
- @ l
+ @ len:l
 
 #--------------------------------------------------------------------------------------------------
 # GRAPHING FUNCTIONS:
