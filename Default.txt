@@ -179,7 +179,7 @@ max(l) =
   a @ a > maxtail;
   maxtail
   $ maxtail = max:as
-  ) @ as;
+  ) @ len:as;
  a
  $ a,as = l
 
