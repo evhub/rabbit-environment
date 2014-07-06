@@ -17,7 +17,7 @@ Implemented Wrappers:
  call"""
     def getstate(self):
         """Wraps getpos."""
-        return self.getpos()
+        return self.counter
     def setstate(self, state):
         """Wraps goto."""
         self.goto(state)
