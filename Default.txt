@@ -184,26 +184,26 @@ max(l) =
  $ a,as = l
 
 replicate(n,x) =
- x, .. replicate:(n-1):x
+ x, ++ replicate:(n-1):x
  @ n>0
 
 take(n,l) =
  (
-  a, .. take:(n-1):as
+  a, ++ take:(n-1):as
   $ a,as = l
   )
  @ l & n>0
 
 reverse(l) =
  (
-  reverse:as .. a,
+  reverse:as ++ a,
   $ a,as = l
   )
  @ l
 
 zip(la, lb) =
  (
-  (a,b), .. zip:as:bs
+  (a,b), ++ zip:as:bs
   $ a,as = la
   $ b,bs = lb
   )
@@ -219,7 +219,7 @@ elem(x, l) =
 
 qsort(l) =
  (
-  qsort:(as~\x\(x@x<=a)) .. a .. qsort:(as~\x\(x@x>a))
+  qsort:(as~\x\(x@x<=a)) ++ a ++ qsort:(as~\x\(x@x>a))
   $ a,as = l
   )
  @ len:l
