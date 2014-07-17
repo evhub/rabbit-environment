@@ -34,7 +34,7 @@ dy = df
 # IMPORTED FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-make lib = import Default
+make lib = install("Default")
 input() = lib:1
 funcsum(x) = lib:2:x
 chansum(x,y) = lib:2:x:y
