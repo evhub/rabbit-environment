@@ -23,7 +23,7 @@ from rabbit.all import *
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def main(debug=False):
-    return mathbase("Evaluator", "EVALUATOR START:", 10, debug, "Default.txt")
+    return mathbase("Evaluator", "EVALUATOR START:", 20, debug, "Default.txt")
 
 if __name__ == "__main__":
     main().start()
