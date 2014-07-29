@@ -23,7 +23,7 @@ from rabbit.all import *
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def main(debug=False):
-    return grapher("~/Checkout/rabbit/rabbit/", "Grapher", 800, 600, debug, "Default.txt")
+    return grapher(None, "Grapher", 800, 600, debug, "Default.txt")
 
 if __name__ == "__main__":
     main().start()
