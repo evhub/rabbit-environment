@@ -2,7 +2,7 @@
 # DEFAULT VARIABLES:
 #--------------------------------------------------------------------------------------------------
 
-fail = 1/0
+fail = \raise("MathError")
 accuracy = 10^-8
 
 nil = none
@@ -26,6 +26,7 @@ deriv = D
 integ = S
 defint = S
 
+Dx = D
 dx = 1
 df = D:f
 dy = df
@@ -34,7 +35,7 @@ dy = df
 # IMPORTED FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-make lib := install("Default")
+make:: lib := install("Default")
 input() = lib:1
 funcsum(x) = lib:2:x
 chansum(x,y) = lib:2:x:y
@@ -71,7 +72,7 @@ left(x) = floor:(x*2)
 
 solve(x,y) = x @ x?=y
 
-mod(x,y) = (xy+-1*floor:(xy))*y $ xy = x/y
+mod(x,y) = (xy-floor:xy)*y $ xy = x/y
 
 add(x,y) = x+y
 sub(x,y) = x-y
@@ -137,7 +138,7 @@ f'n(n, x) = (D:\f:n):x
 # MATHEMATICAL FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-exp(n,x) = sum(n~range(0,n)~x^n/fact:n)
+exp(n,x) = sum(range(0,n)~\n\x^n/fact:n)
 
 lg(x) = ln(x)/ln(2)
 logb(y,x) = ln(x)/ln(y)
@@ -246,15 +247,15 @@ dimensions_string =
 dimensions = print(dimensions_string)
 
 zoom = 2
-zoomin(zoom) = proc:("stretch:=stretch/"+zoom):"render"
-zoomout(zoom) = :("stretch:=stretch*"+zoom):"render"
+zoomin(zoom) = ( def:: stretch:=stretch/zoom ;; render() )
+zoomout(zoom) = ( def:: stretch:=stretch*zoom ;; render() )
 
-xmin = -xup
-xmax = width*xstretch+xmin
-ymin = -yup
-ymax = height*ystretch+ymin
+xmin =\ -xup
+xmax =\ width*xstretch+xmin
+ymin =\ -yup
+ymax =\ height*ystretch+ymin
 
-set_xmin(x) = proc:"xup:=-x"
-set_xmax(x) = proc:"xstretch:=(x+xup)/width"
-set_ymin(y) = proc:"yup:=-y"
-set_ymax(y) = proc:"ystretch:=(y+yup)/height"
+set_xmin(x) = (def:: xup:=-x)
+set_xmax(x) = (def:: xstretch:=(x+xup)/width)
+set_ymin(y) = (def:: yup:=-y)
+set_ymax(y) = (def:: ystretch:=(y+yup)/height)
