@@ -66,14 +66,6 @@ class interfacer(object):
         elif self.v["var"] == 7:
             return int(str(int(self.v["x"]))[(len(str(self.v["x"]))-1)/2+1:])
         elif self.v["var"] == 8:
-            return float(self.v["x"])^float(self.v["y"])
-        elif self.v["var"] == 9:
-            return float(self.v["x"])|float(self.v["y"])
-        elif self.v["var"] == 10:
-            return float(self.v["x"])&float(self.v["y"])
-        elif self.v["var"] == 11:
-            return ~float(self.v["x"])
-        elif self.v["var"] == 12:
             return self.getfib(int(self.v["x"]))
         else:
             return False

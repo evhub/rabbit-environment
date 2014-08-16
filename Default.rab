@@ -45,11 +45,7 @@ loglen(x) = lib:4:x
 combine(x,y) = lib:5:x:y
 extractx(x) = lib:6:x
 extracty(x) = lib:7:x
-bitor(x,y) = lib:9:x:y
-bitand(x,y) = lib:10:x:y
-bitxor(x,y) = lib:8:x:y
-bitnot(x) = lib:11:x
-fib(x) = lib:12:x
+fib(x) = lib:8:x
 
 #--------------------------------------------------------------------------------------------------
 # BOOLEAN FUNCTIONS:
