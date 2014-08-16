@@ -154,28 +154,53 @@ ack(m,n) =
  n+1 @ m<=0;
  ack:(m+-1):1 @ n<=0;
  ack:(m+-1):(ack:m:(n+-1))
- 
+
+#--------------------------------------------------------------------------------------------------
+# PYTHON STATEMENTS:
+#--------------------------------------------------------------------------------------------------
+
+require(name) = include: val(name) @var(name); include: { run: code(name) }
+
+try(expr) = :expr()
+
+if(cond, expr) =
+ [1, expr()]@cond; [0]
+
+elif(cond, expr, parts) = (
+ [1, out]@done; [1, expr()]@cond; [0]
+ $ done, out = list:parts
+ )
+
+else(expr, parts) = (
+ out@done;expr()
+ $ done, out = list:parts
+ )
+
 #--------------------------------------------------------------------------------------------------
 # HASKELL FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-head(l) =
+head(l) = (
  a $ a,as = l
+ )
 
-tail(l) =
+tail(l) = (
  as $ a,as = l
+ )
 
-parts(l) =
+parts(l) = (
  a,as
  $ a,as = l
+ )
 
-length(l) =
+length(l) = (
  1 + length:as @ as;
  1 @ a;
  0
  $ a,as = l
+ )
 
-max(l) =
+max(l) = (
  (
   a @ a > maxtail;
   maxtail
@@ -183,6 +208,7 @@ max(l) =
   ) @ len:as;
  a
  $ a,as = l
+ )
 
 replicate(n,x) =
  x, ++ replicate:(n-1):x
