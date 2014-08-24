@@ -155,10 +155,6 @@ ack(m,n) =
 # PYTHON STATEMENTS:
 #--------------------------------------------------------------------------------------------------
 
-require(name) = include: val(name) @var(name); include: { run: code(name) }
-
-try(expr) = :expr()
-
 if(cond, expr) =
  [1, expr()]@cond; [0]
 
