@@ -1,9 +1,9 @@
 from __future__ import with_statement, absolute_import, print_function, unicode_literals
 from rabbit.all import *
 
-class interfacer(object):
-    def __init__(self, proc):
-        self.proc = proc
+class __rabbit__(object):
+    def __init__(self, e):
+        self.proc = e.proc
         self.sums = {}
         self.vars = {}
         self.fib = {}
@@ -77,5 +77,3 @@ class interfacer(object):
         else:
             self.fib[x] = self.getfib(x-2)+self.getfib(x-1)
             return self.fib[x]
-
-interface = interfacer
