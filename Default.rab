@@ -2,13 +2,14 @@
 # IMPORTS:
 #--------------------------------------------------------------------------------------------------
 
-include(Math, Stats)
+include(Unicode, Math, Stats)
+d = rand
 
 #--------------------------------------------------------------------------------------------------
 # DEFAULT VARIABLES:
 #--------------------------------------------------------------------------------------------------
 
-fail = \raise("MathError")
+fail = \\raise("MathError")
 accuracy = 10^-8
 
 nil = none
@@ -57,14 +58,14 @@ fib(x) = lib:8:x
 # BOOLEAN FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-bool(x) = \true @ x; \false
-not(x) = \false @ x; \true
-and(x,y) = \true @ x&y; \false
-nand(x,y) = \false @ x&y; \true
-or(x,y) = \true @ x|y; \false
-nor(x,y) = \false @ x|y; \true
-xor(x,y) = \true @ bool:x != bool:y; \false
-xnor(x,y) = \false @ bool:x != bool:y; \true
+bool(x) = true @ x; false
+not(x) = false @ x; true
+and(x,y) = true @ x&y; false
+nand(x,y) = false @ x&y; true
+or(x,y) = true @ x|y; false
+nor(x,y) = false @ x|y; true
+xor(x,y) = true @ bool:x != bool:y; false
+xnor(x,y) = false @ bool:x != bool:y; true
 right(x) = floor:(x/2)
 left(x) = floor:(x*2)
 
