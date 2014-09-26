@@ -115,7 +115,7 @@ dot(x,y) = sum(x*y)
 break(f, x) = ff+mod:x:1*(f:(floor:x+1)+-1*ff) $ ff = f:(floor:x)
 iters(f, x) =
  1 @ x<1;
- iters:\f:(x-1) @ f:x
+ iters:f:(x-1) @ f:x
 
 limproc(x) =
  inf @ x>=deca;
@@ -146,7 +146,7 @@ exp(n,x) = sum(range(0,n)~\n\x^n/fact:n)
 lg(x) = ln(x)/ln(2)
 logb(y,x) = ln(x)/ln(y)
 
-int_fact(x) = break:\fact:x
+int_fact(x) = break:fact:x
 gamma_fact(n) = gamma:(n+1)
 quad_fact(n) = fact:(2*n)/fact:n
 dub_fact(n) = prod(range(1,(n+1))~\x\(2*x+-1))
