@@ -42,7 +42,7 @@ dy = df
 # IMPORTED FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-make:: lib := install("Default")
+make:: lib := import("Default")
 input() = lib:1
 funcsum(x) = lib:2:x
 chansum(x,y) = lib:2:x:y
