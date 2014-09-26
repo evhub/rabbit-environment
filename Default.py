@@ -3,7 +3,7 @@ from rabbit.all import *
 
 class __rabbit__(object):
     def __init__(self, e):
-        self.proc = e.proc
+        self.proc = e.processor
         self.sums = {}
         self.vars = {}
         self.fib = {}

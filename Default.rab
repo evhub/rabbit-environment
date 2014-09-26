@@ -254,10 +254,10 @@ qsort(l) =
 # GRAPHING FUNCTIONS:
 #--------------------------------------------------------------------------------------------------
 
-seceq(f, a,b) = slope:\f:a:b+"*(x-"+a+")+"+f:a
-secline(f, a,b) = exec:(seceq:\f:a:b)
-taneq(f, x) = deriv:\f:x+"*(x-"+a+")+"+f:a
-tanline(f, x) = exec:(taneq:\f:x)
+seceq(f, a,b) = slope:f:a:b+"*(x-"+a+")+"+f:a
+secline(f, a,b) = exec:(seceq:f:a:b)
+taneq(f, x) = deriv:f:x+"*(x-"+a+")+"+f:a
+tanline(f, x) = exec:(taneq:f:x)
 
 window_string =
  "Vertical Shift: " + yup +
