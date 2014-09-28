@@ -57,7 +57,7 @@ Implemented Wrappers:
         return self.random()
 
 class __rabbit__(Random):
+    """The Rabbit Interface."""
     def __init__(self, e):
+        """Wraps Random.__init__."""
         return Random.__init__(self)
-
-random = Random()
