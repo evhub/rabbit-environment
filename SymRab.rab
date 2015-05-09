@@ -1,0 +1,47 @@
+#--------------------------------------------------------------------------------------------------
+# SETUP:
+#--------------------------------------------------------------------------------------------------
+
+sympy = import:: sympy
+sympy.init_printing()
+
+#--------------------------------------------------------------------------------------------------
+# UTILITIES:
+#--------------------------------------------------------------------------------------------------
+
+var = sympy.symbols
+sym = sympy.sympify
+sub = sympy.subs # (expr, var, val)
+
+#--------------------------------------------------------------------------------------------------
+# TRIG:
+#-------------------------------------------------------------------------------------------------
+
+pi = sympy.Pi
+cos = sympy.cos
+sin = sympy.sin
+tan = sympy.tan
+sec = sympy.sec
+csc = sympy.csc
+cot = sympy.cot
+acos = sympy.acos
+asin = sympy.asin
+atan = sympy.atan
+asec = sympy.asec
+acsc = sympy.acsc
+acot = sympy.acot
+sqrt = sympy.sqrt
+
+#--------------------------------------------------------------------------------------------------
+# CALCULUS:
+#-------------------------------------------------------------------------------------------------
+
+exp = sympy.exp
+log = sympy.log10
+ln = sympy.ln
+Derivative = sympy.Derivative # (expr)
+diff = sympy.diff # (expr, *vars)
+integrate = sympy.integrate # (expr, *vars)
+Integral = sympy.Integral # (expr)
+limit = sympy.limit # (expr, var, val)
+Limit = sympy.Limit # (expr, var, val)
